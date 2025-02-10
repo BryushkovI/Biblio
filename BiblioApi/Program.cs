@@ -1,4 +1,5 @@
-
+using BiblioContext;
+using Microsoft.EntityFrameworkCore;
 namespace BiblioApi
 {
     public class Program
@@ -6,6 +7,10 @@ namespace BiblioApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<BiblioContext.BiblioContext>(options =>
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("BiblioContext") ?? throw new InvalidOperationException("Connection string 'BiblioContext' not found.")));
 
             // Add services to the container.
 
