@@ -8,7 +8,7 @@ using BiblioContext.Model;
 namespace DataProvider
 {
 
-    internal interface IBookPrivider
+    public interface IBookPrivider
     {
         public Task<IEnumerable<Book>> GetBooksAsync();
 

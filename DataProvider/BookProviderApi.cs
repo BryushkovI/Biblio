@@ -1,37 +1,105 @@
 ﻿using BiblioContext.Model;
+using Newtonsoft.Json;
+using System.Net.Mime;
+using System;
+using System.Net.WebSockets;
+using System.Text.Json.Nodes;
+using System.Net.Http.Headers;
 
 namespace DataProvider
 {
     public class BookProviderApi : IBookPrivider
     {
+        HttpClient HttpClient { get; set; }
+
+        public BookProviderApi()
+        {
+            HttpClient = new HttpClient();
+        }
         public bool BookExists(int id)
         {
-            throw new NotImplementedException();
+
+            try
+            {
+                string url = $@"https://localhost:7093/api/Books/{id}";
+                var response = HttpClient.GetAsync(requestUri: url).Result;
+                return JsonConvert.DeserializeObject<Book>(response.Content.ReadAsStringAsync().Result) != null;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
-        public Task CreateBookAsync(Book book)
+        public async Task CreateBookAsync(Book book)
         {
-            throw new NotImplementedException();
+            string url = $@"https://localhost:7093/api/Books";
+
+            try
+            {
+                await HttpClient.PostAsync(requestUri: url,
+                                               content: new StringContent(
+                                                    JsonConvert.SerializeObject(book),
+                                                    System.Text.Encoding.UTF8,
+                                                    MediaTypeNames.Application.Json)
+                                               );
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
-        public Task DeleteBookAsync(int? id)
+        public async Task DeleteBookAsync(int? id)
         {
-            throw new NotImplementedException();
+            string url = $@"https://localhost:7093/api/Books/{id}";
+            await HttpClient.DeleteAsync(url);
         }
 
-        public Task<Book> GetBookAsync(int? id)
+        public async Task<Book> GetBookAsync(int? id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string url = $@"https://localhost:7093/api/Books/{id}";
+                var response = await HttpClient.GetAsync(requestUri: url);
+                return JsonConvert.DeserializeObject<Book>(await response.Content.ReadAsStringAsync());
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task<IEnumerable<Book>> GetBooksAsync()
+        public async Task<IEnumerable<Book>> GetBooksAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                string url = $@"https://localhost:7093/api/Books";
+                var response = await HttpClient.GetAsync(requestUri: url);
+                return JsonConvert.DeserializeObject<IEnumerable<Book>>(await response.Content.ReadAsStringAsync());
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
-        public Task UpdateBookAsync(Book book)
+        public async Task UpdateBookAsync(Book book)
         {
-            throw new NotImplementedException();
+            string url = $@"https://localhost:7093/api/Books/{book.Id}";
+
+            try
+            {
+                await HttpClient.PutAsync(requestUri: url,
+                                              content: new StringContent(JsonConvert.SerializeObject(book),
+                                                                         System.Text.Encoding.UTF8,
+                                                                         MediaTypeNames.Application.Json));
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }
