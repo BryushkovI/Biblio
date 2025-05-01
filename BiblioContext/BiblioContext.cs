@@ -1,4 +1,6 @@
-﻿using BiblioContext.Model;
+﻿using AuthAppLib.Model;
+using BiblioContext.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BiblioContext
 {
-    public class BiblioContext : DbContext
+    public class BiblioContext : IdentityDbContext<User>
     {
         public DbSet<Book> Books { get; set; } = default!;
         public DbSet<Borrowing> Borrowing { get; set; } = default!;

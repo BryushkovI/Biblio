@@ -1,4 +1,6 @@
+using AuthAppLib.Model;
 using DataProvider;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 namespace BiblioWeb
 {
@@ -9,10 +11,13 @@ namespace BiblioWeb
             // добавить необходимые использования
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<BiblioContext.BiblioContext>(options =>
-                options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("BiblioContext") ?? throw new InvalidOperationException("Connection string 'NotebookContext' not found.")));
+            //builder.Services.AddDbContext<BiblioContext.BiblioContext>(options =>
+            //    options.UseSqlServer(
+            //        builder.Configuration.GetConnectionString("BiblioContext") ?? throw new InvalidOperationException("Connection string 'BiblioContext' not found.")));
 
+            //builder.Services.AddIdentity<User, IdentityRole>()
+            //        .AddEntityFrameworkStores<BiblioContext.BiblioContext>()
+            //        .AddDefaultTokenProviders();
 
             builder.Services.AddTransient<IBookPrivider, BookProviderApi>();
             builder.Services.AddMvc();

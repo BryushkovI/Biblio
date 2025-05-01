@@ -9,6 +9,7 @@
         public int Ganre { get; set; }
         public DateTime ReleaseDate { get; set; }
         public bool IsAvailable { get; set; }
+        public int CountAvailable { get; set; }
 
     }
 }

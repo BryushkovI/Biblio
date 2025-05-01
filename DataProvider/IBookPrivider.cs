@@ -23,4 +23,19 @@ namespace DataProvider
         bool BookExists(int id);
     }
 
+    public interface IGanreProvider
+    {
+        public Task<IEnumerable<Ganre>> GetGanresAsync();
+
+        public Task<Ganre> GetGanreAsync(int? id);
+
+        public Task CreateGanreAsync(Ganre ganre);
+
+        public Task UpdateGanreAsync(Ganre ganre);
+
+        public Task DeleteGanreAsync(int? id);
+
+        bool GanreExists(int id);
+    }
+
 }

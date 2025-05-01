@@ -10,6 +10,7 @@ namespace DataProvider
 {
     public class BookProviderApi : IBookPrivider
     {
+        public Book Book { get; set; }
         HttpClient HttpClient { get; set; }
 
         public BookProviderApi()
