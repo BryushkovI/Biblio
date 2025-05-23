@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Добро пожаловать в библиотеку";
+}
+
+<div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Добро пожаловать в Центральную библиотеку</h1>
+        <p class="lead">Откройте для себя мир знаний и приключений</p>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-8 mx-auto">
+            <form asp-page="/Search" method="get" class="d-flex">
+                <input class="form-control me-2" type="search" name="query" placeholder="Найти книгу, автора..." aria-label="Поиск">
+                <button class="btn btn-primary" type="submit">Поиск</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Новые поступления</h5>
+                    <p class="card-text">Ознакомьтесь с последними поступлениями в нашу коллекцию.</p>
+                    <a asp-page="/NewArrivals" class="btn btn-outline-primary">Посмотреть</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Популярные книги</h5>
+                    <p class="card-text">Самые читаемые книги этого месяца.</p>
+                    <a asp-page="/Popular" class="btn btn-outline-primary">Посмотреть</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Электронный каталог</h5>
+                    <p class="card-text">Полный каталог наших книг и материалов.</p>
+                    <a asp-page="/Catalog" class="btn btn-outline-primary">Перейти</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <h3>Часы работы</h3>
+            <ul class="list-unstyled">
+                <li><strong>Пн-Пт:</strong> 9:00 - 20:00</li>
+                <li><strong>Сб:</strong> 10:00 - 18:00</li>
+                <li><strong>Вс:</strong> 10:00 - 16:00</li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <h3>Быстрые ссылки</h3>
+            <ul>
+                <li><a asp-page="/About">О библиотеке</a></li>
+                <li><a asp-page="/Services">Услуги</a></li>
+                <li><a asp-page="/Events">Мероприятия</a></li>
+                <li><a asp-page="/Contact">Контакты</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@* @section Styles { *@
+@*     <style> *@
+@*         .card { *@
+@*             transition: transform 0.3s; *@
+@*         } *@
+@*         .card:hover { *@
+@*             transform: translateY(-5px); *@
+@*             box-shadow: 0 10px 20px rgba(0,0,0,0.1); *@
+@*         } *@
+@*     </style> *@
+@* } *@
+

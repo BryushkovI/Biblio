@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BryushkovI\Notebook\AuthAppLib\AuthAppLib.csproj" />
+    <ProjectReference Include="..\AuthAppLib\AuthAppLib.csproj" />
   </ItemGroup>
 
 </Project>

@@ -25,6 +25,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            /*<li>
+                                <a class="nav-link" asp-controller="Account" asp-action="CurrentUser" asp-route-userName="@User.Identity.Name">@User.Identity.Name</a>
+                            </li>*/
+                            <li>
+                                <a class="nav-link" asp-controller="Account" asp-action="Logout">Выйти</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="nav-link" asp-controller="Account" asp-action="Login" asp-route-returnUrl="/Books/Index">Вход</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

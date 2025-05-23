@@ -1,0 +1,30 @@
+﻿@model AuthAppLib.Model.UserRegistration
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<h1>SignUp</h1>
+<div id="cd-signup">
+
+	<form asp-action="SignUp" asp-antiforgery="true" class="cd-form">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<p class="fieldset">
+			<label class="image-replace cd-username">Username</label>
+			<input class="full-width has-padding has-border" asp-for="UserName" type="text" placeholder="Username">
+		</p>
+
+		<p class="fieldset">
+			<label class="image-replace cd-password">Password</label>
+			<input class="full-width has-padding has-border" asp-for="Password" type="text" placeholder="Password">
+		</p>
+
+		<p class="fieldset">
+			<label class="image-replace cd-password" >Confirm password</label>
+			<input class="full-width has-padding has-border" asp-for="ConfirmPassword" type="text" placeholder="Confirm password">
+		</p>
+
+		<p class="fieldset">
+			<input class="full-width has-padding" type="submit" value="Create account">
+		</p>
+	</form>
+</div>

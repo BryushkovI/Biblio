@@ -1,30 +1,49 @@
-﻿namespace BiblioWeb
+﻿using AuthAppLib.Model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+namespace BiblioWeb
 {
     public class Startup
     {
-        readonly IConfiguration configuration;
         public Startup(IConfiguration configuration)
         {
-            this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+            Configuration = configuration;
         }
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            //services.ConfigureApplicationCookie(options =>
-            //{
-            //    options.Cookie.HttpOnly = true;
-            //    options.Cookie.Expiration = TimeSpan.FromMinutes(30);
-            //    options.LoginPath = "/Account/Login";
-            //    options.LogoutPath = "/Account/Logout";
-            //    options.SlidingExpiration = true;
-            //});
-        }
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
+            services.AddDbContext<BiblioContext.BiblioContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("BiblioContext") ?? throw new InvalidOperationException("Connection string 'BiblioContext' not found.")));
 
-            
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<BiblioContext.BiblioContext>()
+                .AddDefaultTokenProviders();
+
+            services.AddControllersWithViews();
+        }
+
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseDeveloperExceptionPage();
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
+            app.UseAuthentication();    // подключение аутентификации
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

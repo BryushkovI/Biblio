@@ -1,0 +1,65 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AuthAppLib.Model.UserLogin
+@{
+}
+<h1>
+    Login
+</h1>
+
+	<div>
+		<!-- this is the entire modal form, including the background -->
+		<div>
+			<!-- this is the container wrapper -->
+			<ul>
+				<li><a asp-action="SignUp">New account</a></li>
+			</ul>
+
+			<div>
+				<!-- log in form -->
+				<form asp-action="Login" asp-antiforgery="true" class="cd-form">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<input type="hidden" asp-for="ReturnUrl" />
+					<p>
+						<label>UserName</label>
+						<input asp-for="UserName" id="UserName" type="text" placeholder="UserName">
+					</p>
+
+					<p>
+						<label class="image-replace cd-password" >Password</label>
+						<input class="full-width has-padding has-border" asp-for="Password" id="Password" type="text" placeholder="Password">
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width" type="submit" value="Login">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+				<!-- <a href="#0" class="cd-close-form">Close</a> -->
+			</div> <!-- cd-login -->
+
+			@*
+
+			<div id="cd-reset-password">
+				<!-- reset password form -->
+				<p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+				<form class="cd-form">
+					<p class="fieldset">
+						<label class="image-replace cd-email" for="reset-email">E-mail</label>
+						<input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+
+					<p class="fieldset">
+						<input class="full-width has-padding" type="submit" value="Reset password">
+					</p>
+				</form>
+
+				<p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+			</div> <!-- cd-reset-password -->
+			<a href="#0" class="cd-close-form">Close</a>
+		</div> <!-- cd-user-modal-container --> *@
+	</div> <!-- cd-user-modal -->
